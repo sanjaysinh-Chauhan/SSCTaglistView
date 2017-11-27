@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="9RR-0J-EyL" customClass="TagCollectionCell" customModule="TaglistCollectionDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofb-Zt-qga">
+                        <rect key="frame" x="5" y="5" width="240" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHz-Kh-0bV">
+                                <rect key="frame" x="10" y="6" width="188" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-7l-0nF">
+                                <rect key="frame" x="198" y="0.0" width="42" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="3oC-4T-KPQ"/>
+                                </constraints>
+                                <state key="normal" image="icoClose"/>
+                                <connections>
+                                    <action selector="removeAction:" destination="9RR-0J-EyL" eventType="touchUpInside" id="7e4-ir-Mxs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PHz-Kh-0bV" firstAttribute="leading" secondItem="Ofb-Zt-qga" secondAttribute="leading" constant="10" id="1hd-vJ-ALl"/>
+                            <constraint firstItem="KCA-7l-0nF" firstAttribute="leading" secondItem="PHz-Kh-0bV" secondAttribute="trailing" id="5vI-HF-fMz"/>
+                            <constraint firstItem="KCA-7l-0nF" firstAttribute="top" secondItem="Ofb-Zt-qga" secondAttribute="top" id="R5z-8N-P1j"/>
+                            <constraint firstAttribute="trailing" secondItem="PHz-Kh-0bV" secondAttribute="trailing" priority="750" constant="10" id="aZN-hR-e34"/>
+                            <constraint firstAttribute="trailing" secondItem="KCA-7l-0nF" secondAttribute="trailing" id="bmP-Wb-au0"/>
+                            <constraint firstAttribute="bottom" secondItem="KCA-7l-0nF" secondAttribute="bottom" id="hAk-qp-z7d"/>
+                            <constraint firstAttribute="bottom" secondItem="PHz-Kh-0bV" secondAttribute="bottom" constant="6" id="hxI-hB-Ulx"/>
+                            <constraint firstItem="PHz-Kh-0bV" firstAttribute="top" secondItem="Ofb-Zt-qga" secondAttribute="top" constant="6" id="vzQ-hh-Zq5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Ofb-Zt-qga" firstAttribute="leading" secondItem="9RR-0J-EyL" secondAttribute="leading" constant="5" id="Re6-h4-yb7"/>
+                <constraint firstAttribute="bottom" secondItem="Ofb-Zt-qga" secondAttribute="bottom" constant="5" id="RuQ-G6-06Y"/>
+                <constraint firstAttribute="trailing" secondItem="Ofb-Zt-qga" secondAttribute="trailing" constant="5" id="UxR-bI-ZNS"/>
+                <constraint firstItem="Ofb-Zt-qga" firstAttribute="top" secondItem="9RR-0J-EyL" secondAttribute="top" constant="5" id="eQi-9B-H5d"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="tt6-0A-VKT"/>
+            <connections>
+                <outlet property="btnRemoveTag" destination="KCA-7l-0nF" id="vHb-5r-GH9"/>
+                <outlet property="lblTag" destination="PHz-Kh-0bV" id="GP4-uP-C7q"/>
+                <outlet property="viewTag" destination="Ofb-Zt-qga" id="MMX-JA-WuF"/>
+            </connections>
+            <point key="canvasLocation" x="-451" y="-387"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icoClose" width="13" height="13"/>
+    </resources>
+</document>
