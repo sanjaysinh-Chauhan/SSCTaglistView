@@ -154,9 +154,6 @@ protocol TagViewDelegate: class {
     }
     
     
-
-    
-    
     func setupTagCollection() {
         
         
@@ -177,7 +174,6 @@ protocol TagViewDelegate: class {
         let tagCollectionNib = UINib(nibName: String(describing: TagCollectionCell.self), bundle: nil)
         collectionView!.register(tagCollectionNib, forCellWithReuseIdentifier: "Cell")
         
-//        collectionView.backgroundColor = UIColor(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1.0)
         collectionView.backgroundColor = UIColor.red
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -329,4 +325,5 @@ extension String {
         return ceil(boundingBox.width)
     }
 }
+
 
