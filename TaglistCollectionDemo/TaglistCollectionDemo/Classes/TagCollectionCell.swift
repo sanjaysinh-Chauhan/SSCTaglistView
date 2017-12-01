@@ -13,37 +13,48 @@ protocol TagColllectionCellDelegate {
 class TagCollectionCell: UICollectionViewCell {
     @IBOutlet var lblTag: UILabel!
     @IBOutlet var viewTag: UIView!
-    var arylist : [String]!
+    var objTagName : String!
+    
     var indexPath : IndexPath!
-    var outerView : TaglistCollection!
+    
     @IBOutlet var btnRemoveTag: UIButton!
     
     var delegate : TagColllectionCellDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         self.lblTag.backgroundColor = UIColor.clear
+        self.backgroundColor = Theme.shared.cellBackGroundColor
+        self.lblTag.textColor = Theme.shared.tagTextColor
+        self.lblTag.font = Theme.shared.textFont
+        self.viewTag.backgroundColor = Theme.shared.tagBackgroundColor
+        self.viewTag.layer.cornerRadius = 15.0
+        
+        
+        
+        if (Theme.shared.isShadowEnabled == true) {
+            
+            self.viewTag.layer.masksToBounds = false
+            self.viewTag.layer.shadowRadius = Theme.shared.tagShadowRadius
+            self.viewTag.layer.shadowOpacity = Theme.shared.tagShadowOpacity
+            self.viewTag.layer.shadowOffset = CGSize.zero
+            self.viewTag.layer.shadowColor = Theme.shared.tagShadowColor.cgColor
+        }
+        else {
+            self.viewTag.layer.borderWidth = Theme.shared.tagBorderWidht
+            self.viewTag.layer.borderColor = Theme.shared.tagBorderColor.cgColor
+        }
+        
     }
     
     func configureCell() {
-        self.lblTag.text = self.arylist[indexPath.row]
-        if(self.outerView != nil) {
-            self.backgroundColor = self.outerView.cellBackGroundColor
-            self.lblTag.textColor = self.outerView.tagTextColor
-            self.lblTag.font = self.outerView.tagFont
-            self.viewTag.backgroundColor = self.outerView.tagBackgroundColor
-            self.viewTag.layer.cornerRadius = 15.0
-            
-            
-            self.viewTag.layer.borderWidth = self.outerView.tagBorderWidht
-            self.viewTag.layer.borderColor = self.outerView.tagBorderColor.cgColor
-            
-            if(self.outerView.isDeleteEnabled == false) {
-                self.btnRemoveTag.removeFromSuperview()
-            }
-            
+        
+        self.lblTag.text = objTagName
 
+        if(Theme.shared.isDeleteEnabled == false) {
+            self.btnRemoveTag.removeFromSuperview()
         }
+
         
     }
 

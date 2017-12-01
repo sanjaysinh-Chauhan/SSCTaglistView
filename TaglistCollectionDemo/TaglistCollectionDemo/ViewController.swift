@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         self.aryTeglist = self.tagListView.copyAllTags()
         
         
-        //self.tagListView.tagFont = UIFont.systemFont(ofSize: 15.0, weight: .heavy)
+        self.tagListView.textFont = UIFont.systemFont(ofSize: 15.0, weight: .medium)
         
         
     }
@@ -62,7 +62,11 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : TagViewDelegate {
-    func didSelectTag(_ indexPath: IndexPath) {
+    func didRemoveTag(_ indexPath: IndexPath) {
+        self.aryTeglist.remove(at: indexPath.item)
+    }
+    
+    func didTaponTag(_ indexPath: IndexPath) {
         print(self.aryTeglist[indexPath.item])
     }
     

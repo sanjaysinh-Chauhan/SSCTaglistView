@@ -10,29 +10,29 @@ import UIKit
 protocol TagViewDelegate: class {
 
     
-    func didSelectTag ( _ indexPath : IndexPath)
+    func didTaponTag ( _ indexPath : IndexPath)
+    func didRemoveTag ( _ indexPath : IndexPath)
     
 }
 @IBDesignable class TaglistCollection: UIView {
     
   
-
     @IBInspectable public var cellSpacing: CGFloat = 0.0 {
         didSet {
             self.setNeedsDisplay()
-            
-        }
-    }
-    @IBInspectable public var cellBackGroundColor : UIColor = UIColor.clear {
-        didSet {
-            self.setNeedsDisplay()
-            
         }
     }
     
-    @IBInspectable public var tagFont: UIFont = UIFont.systemFont(ofSize: 15.0) {
+    @IBInspectable public var cellBackGroundColor : UIColor = UIColor.clear {
         didSet {
-            
+            Theme.shared.cellBackGroundColor = cellBackGroundColor
+            self.setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable public var textFont: UIFont = UIFont.systemFont(ofSize: 15.0) {
+        didSet {
+            Theme.shared.textFont = textFont
             self.setNeedsDisplay()
 
         }
@@ -40,41 +40,103 @@ protocol TagViewDelegate: class {
     
     @IBInspectable public var tagTextColor : UIColor = UIColor.clear {
         didSet {
+            Theme.shared.tagTextColor = tagTextColor
             self.setNeedsDisplay()
         }
     }
     
     @IBInspectable public var tagBackgroundColor : UIColor = UIColor.clear {
         didSet {
+            Theme.shared.tagBackgroundColor = tagBackgroundColor
             self.setNeedsDisplay()
         }
     }
     
     @IBInspectable public var tagBorderColor : UIColor = UIColor.clear {
         didSet {
+            Theme.shared.tagBorderColor = tagBorderColor
             self.setNeedsDisplay()
         }
     }
     
     @IBInspectable public var tagBorderWidht : CGFloat = 0.0 {
         didSet {
-            self.setNeedsDisplay()
-        }
-    }
-    @IBInspectable public var scrollIndicator : Bool = true {
-        didSet {
+            Theme.shared.tagBorderWidht = tagBorderWidht
             self.setNeedsDisplay()
         }
     }
     
+    @IBInspectable public var shadowColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.tagShadowColor = shadowColor
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var shadowOpacity : Float = 0.5 {
+        didSet {
+            Theme.shared.tagShadowOpacity = shadowOpacity
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var shadowRadius : CGFloat = 2.0  {
+        didSet {
+            Theme.shared.tagShadowRadius = shadowRadius
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var scrollIndicator : Bool = true {
+        didSet {
+            
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var allowSingleSelection : Bool = false {
+        didSet {
+            Theme.shared.allowSingleSelection = allowSingleSelection
+            self.setNeedsDisplay()
+        }
+    }
+    @IBInspectable public var allowMultipleSelection : Bool = false {
+        didSet {
+            Theme.shared.allowMultipleSelection = allowMultipleSelection
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var selectionColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.selectionColor = selectionColor
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var selectionTagTextColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.selectionTagTextColor = selectionTagTextColor
+            self.setNeedsDisplay()
+        }
+    }
     @IBInspectable public var isDeleteEnabled : Bool = false {
         didSet {
+            Theme.shared.isDeleteEnabled = isDeleteEnabled
+            self.setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable public var isShadowEnabled : Bool = false {
+        didSet {
+            Theme.shared.isShadowEnabled = isShadowEnabled
             self.setNeedsDisplay()
         }
     }
 
     var collectionView : UICollectionView!
     var aryTaglist = [String]()
+    var arySelectedTag = [Bool]()
     var delegate : TagViewDelegate?
     
     override init(frame: CGRect) {
@@ -106,7 +168,7 @@ protocol TagViewDelegate: class {
         layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
         layout.scrollDirection = .horizontal
         
-        let frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: 50.0)
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: 70.0)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = scrollIndicator
@@ -115,8 +177,8 @@ protocol TagViewDelegate: class {
         let tagCollectionNib = UINib(nibName: String(describing: TagCollectionCell.self), bundle: nil)
         collectionView!.register(tagCollectionNib, forCellWithReuseIdentifier: "Cell")
         
-        collectionView.backgroundColor = UIColor(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1.0)
-        
+//        collectionView.backgroundColor = UIColor(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1.0)
+        collectionView.backgroundColor = UIColor.red
         collectionView.delegate = self
         collectionView.dataSource = self
         self.addSubview(collectionView)
@@ -136,11 +198,13 @@ protocol TagViewDelegate: class {
     func appendTag (tagNamelist : [String]) {
         for tag in tagNamelist {
             self.aryTaglist.append(tag)
+            self.arySelectedTag.append(false)
         }
         self.collectionView.reloadData()
     }
     func appendTag (tagName : String) {
         self.aryTaglist.append(tagName)
+        self.arySelectedTag.append(false)
         collectionView.reloadData()
     }
     
@@ -155,6 +219,8 @@ protocol TagViewDelegate: class {
     func removeTagsAtIndex (index : Int) {
         self.aryTaglist.remove(at: index)
         self.collectionView.reloadData()
+        
+
     }
     
     
@@ -177,10 +243,10 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuserIdentifier, for: indexPath) as! TagCollectionCell
         
         
-        cell.backgroundColor = UIColor.red
-        cell.arylist = self.aryTaglist
+        
         cell.indexPath = indexPath
-        cell.outerView = self
+        cell.objTagName = self.aryTaglist[indexPath.item]
+        
         cell.delegate = self as TagColllectionCellDelegate
         cell.configureCell()
         
@@ -191,14 +257,46 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let w = self.aryTaglist[indexPath.row].width(withConstraintedHeight: 50.0, font: tagFont)
+        let w = self.aryTaglist[indexPath.item].width(withConstraintedHeight: 70.0, font: textFont)
 
         return CGSize(width: w, height: 50.0)
 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectTag(indexPath)
+        delegate?.didTaponTag(indexPath)
+        
+        
+        if(self.allowMultipleSelection == true || self.allowMultipleSelection) {
+            
+            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
+            
+            collectionView.reloadData()
+//            if(self.arySelectedTag[indexPath.item] == true) {
+//                cell.viewTag.backgroundColor = self.selectionColor
+//                cell.lblTag.textColor = self.selectionTagTextColor
+//            }
+//            else {
+//                cell.viewTag.backgroundColor = self.tagBackgroundColor
+//                cell.lblTag.textColor = self.tagTextColor
+//            }
+            
+        }
+//        else if(self.allowSingleSelection == true) {
+//
+//            if(self.arySelectedTag[indexPath.item] == true) {
+//                cell.viewTag.backgroundColor = self.selectionColor
+//                cell.lblTag.textColor = self.selectionTagTextColor
+//            }
+//            else {
+//                cell.viewTag.backgroundColor = self.tagBackgroundColor
+//                cell.lblTag.textColor = self.tagTextColor
+//            }
+//            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
+//            self.collectionView.reloadData()
+//        }
+        
+        
     }
     
     
@@ -208,7 +306,11 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
 
 extension TaglistCollection : TagColllectionCellDelegate {
     func removeTagAt(indexPath: IndexPath) {
-        self.removeTagsAtIndex(index: indexPath.row)
+        
+        self.delegate?.didRemoveTag(indexPath)
+        self.removeTagsAtIndex(index: indexPath.item)
+        
+        
     }
 }
 
