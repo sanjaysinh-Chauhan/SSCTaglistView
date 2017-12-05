@@ -13,19 +13,23 @@ class ViewController: UIViewController {
     var aryTeglist = [String]()
     @IBOutlet var tagListView: TaglistCollection!
     
+    @IBOutlet var btnClose: CloseButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
 
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         
         self.setupTaglistView()
-        
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

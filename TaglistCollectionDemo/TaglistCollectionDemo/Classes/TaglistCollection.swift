@@ -235,11 +235,10 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         return self.aryTaglist.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         let cellReuserIdentifier = "Cell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuserIdentifier, for: indexPath) as! TagCollectionCell
-        
-        
-        
         cell.indexPath = indexPath
         cell.objTagName = self.aryTaglist[indexPath.item]
         
@@ -247,6 +246,7 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         cell.configureCell()
         
         return cell
+
     }
     
     

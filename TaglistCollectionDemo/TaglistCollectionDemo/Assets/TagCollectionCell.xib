@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,12 +28,13 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-7l-0nF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-7l-0nF" customClass="CloseButton" customModule="TaglistCollectionDemo" customModuleProvider="target">
                                 <rect key="frame" x="198" y="0.0" width="42" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="3oC-4T-KPQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="f3C-JY-fEU"/>
                                 </constraints>
-                                <state key="normal" image="icoClose"/>
                                 <connections>
                                     <action selector="removeAction:" destination="9RR-0J-EyL" eventType="touchUpInside" id="7e4-ir-Mxs"/>
                                 </connections>
@@ -42,10 +44,9 @@
                         <constraints>
                             <constraint firstItem="PHz-Kh-0bV" firstAttribute="leading" secondItem="Ofb-Zt-qga" secondAttribute="leading" constant="10" id="1hd-vJ-ALl"/>
                             <constraint firstItem="KCA-7l-0nF" firstAttribute="leading" secondItem="PHz-Kh-0bV" secondAttribute="trailing" id="5vI-HF-fMz"/>
-                            <constraint firstItem="KCA-7l-0nF" firstAttribute="top" secondItem="Ofb-Zt-qga" secondAttribute="top" id="R5z-8N-P1j"/>
                             <constraint firstAttribute="trailing" secondItem="PHz-Kh-0bV" secondAttribute="trailing" priority="750" constant="10" id="aZN-hR-e34"/>
                             <constraint firstAttribute="trailing" secondItem="KCA-7l-0nF" secondAttribute="trailing" id="bmP-Wb-au0"/>
-                            <constraint firstAttribute="bottom" secondItem="KCA-7l-0nF" secondAttribute="bottom" id="hAk-qp-z7d"/>
+                            <constraint firstItem="KCA-7l-0nF" firstAttribute="centerY" secondItem="Ofb-Zt-qga" secondAttribute="centerY" id="gLm-I9-2jt"/>
                             <constraint firstAttribute="bottom" secondItem="PHz-Kh-0bV" secondAttribute="bottom" constant="6" id="hxI-hB-Ulx"/>
                             <constraint firstItem="PHz-Kh-0bV" firstAttribute="top" secondItem="Ofb-Zt-qga" secondAttribute="top" constant="6" id="vzQ-hh-Zq5"/>
                         </constraints>
@@ -67,7 +68,4 @@
             <point key="canvasLocation" x="-451" y="-387"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="icoClose" width="13" height="13"/>
-    </resources>
 </document>
