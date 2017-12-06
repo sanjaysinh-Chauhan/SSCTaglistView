@@ -29,6 +29,7 @@ class CloseButton: UIButton {
         let view = CloseView(frame: CGRect(x: 0.0, y: 0.0, width: Theme.shared.closeIconWidth, height: Theme.shared.closeIconHeight))
         
         view.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        
         self.addSubview(view)
         
     }

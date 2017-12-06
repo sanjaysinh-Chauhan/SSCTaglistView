@@ -87,6 +87,13 @@ protocol TagViewDelegate: class {
         }
     }
     
+    @IBInspectable public var isShadowEnabled : Bool = false {
+        didSet {
+            Theme.shared.isShadowEnabled = isShadowEnabled
+            self.setNeedsDisplay()
+        }
+    }
+    
     @IBInspectable public var scrollIndicator : Bool = true {
         didSet {
             
@@ -107,40 +114,20 @@ protocol TagViewDelegate: class {
         }
     }
     
-    @IBInspectable public var selectionColor : UIColor = UIColor.clear {
-        didSet {
-            Theme.shared.selectionColor = selectionColor
-            self.setNeedsDisplay()
-        }
-    }
     
-    @IBInspectable public var selectionTagTextColor : UIColor = UIColor.clear {
-        didSet {
-            Theme.shared.selectionTagTextColor = selectionTagTextColor
-            self.setNeedsDisplay()
-        }
-    }
+    /// CloseIcon properties
     @IBInspectable public var isDeleteEnabled : Bool = false {
         didSet {
             Theme.shared.isDeleteEnabled = isDeleteEnabled
             self.setNeedsDisplay()
         }
     }
-
-    @IBInspectable public var isShadowEnabled : Bool = false {
-        didSet {
-            Theme.shared.isShadowEnabled = isShadowEnabled
-            self.setNeedsDisplay()
-        }
-    }
-    
     @IBInspectable public var closeIconTint : UIColor = UIColor.white {
         didSet {
             Theme.shared.closeIconTint = closeIconTint
             self.setNeedsDisplay()
         }
     }
-
     @IBInspectable public var closeIconWidht : CGFloat = 0.0 {
         didSet {
             Theme.shared.closeIconWidth = closeIconWidht
@@ -153,6 +140,30 @@ protocol TagViewDelegate: class {
             self.setNeedsDisplay()
         }
     }
+    
+    
+    /// Tag selection properties
+    @IBInspectable public var selectionBackgroundColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.selectionColor = selectionBackgroundColor
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var selectionTagTextColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.selectionTagTextColor = selectionTagTextColor
+            self.setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var selectionCloseIconTint : UIColor = UIColor.white {
+        didSet {
+            Theme.shared.closeIconTint = closeIconTint
+            self.setNeedsDisplay()
+        }
+    }
+    
     var collectionView : UICollectionView!
     var aryTaglist = [String]()
     var arySelectedTag = [Bool]()
@@ -247,6 +258,26 @@ protocol TagViewDelegate: class {
         return aryTags
     }
     
+    func copySelectedTags () -> [String] {
+        var aryTags = [String]()
+        for (index , _) in self.arySelectedTag.enumerated() {
+            if(self.arySelectedTag[index] == true) {
+                aryTags.append(self.aryTaglist[index])
+            }
+        }
+        return aryTags
+    }
+    
+    func copyUnselectedTags () -> [String] {
+        var aryTags = [String]()
+        for (index , _) in self.arySelectedTag.enumerated() {
+            if(self.arySelectedTag[index] == false) {
+                aryTags.append(self.aryTaglist[index])
+            }
+        }
+        return aryTags
+    }
+    
 }
 
 extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout{
@@ -261,7 +292,9 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         cell.indexPath = indexPath
         cell.objTagName = self.aryTaglist[indexPath.item]
         
+        cell.isCellSelected = self.arySelectedTag[indexPath.item]
         cell.delegate = self as TagColllectionCellDelegate
+        
         cell.configureCell()
         
         return cell
@@ -281,36 +314,22 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTaponTag(indexPath)
         
-        
-        if(self.allowMultipleSelection == true || self.allowMultipleSelection) {
+        if(self.allowMultipleSelection == true) {
+            
+            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
+        }
+        else if(self.allowSingleSelection == true) {
             
             self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
             
-            collectionView.reloadData()
-//            if(self.arySelectedTag[indexPath.item] == true) {
-//                cell.viewTag.backgroundColor = self.selectionColor
-//                cell.lblTag.textColor = self.selectionTagTextColor
-//            }
-//            else {
-//                cell.viewTag.backgroundColor = self.tagBackgroundColor
-//                cell.lblTag.textColor = self.tagTextColor
-//            }
+            for (index , _) in self.arySelectedTag.enumerated() {
+                if (indexPath.item != index) {
+                    self.arySelectedTag[index] = false
+                }
+            }
             
         }
-//        else if(self.allowSingleSelection == true) {
-//
-//            if(self.arySelectedTag[indexPath.item] == true) {
-//                cell.viewTag.backgroundColor = self.selectionColor
-//                cell.lblTag.textColor = self.selectionTagTextColor
-//            }
-//            else {
-//                cell.viewTag.backgroundColor = self.tagBackgroundColor
-//                cell.lblTag.textColor = self.tagTextColor
-//            }
-//            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
-//            self.collectionView.reloadData()
-//        }
-        
+        self.collectionView.reloadData()
         
     }
     

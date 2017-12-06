@@ -62,7 +62,13 @@ class ViewController: UIViewController {
         
     }
 
-
+    @IBAction func copySelectedAction(_ sender: UIButton) {
+        print(self.tagListView.copySelectedTags())
+    }
+    @IBAction func copyUnselectedAction(_ sender: UIButton) {
+        print(self.tagListView.copyUnselectedTags())
+    }
+    
 }
 
 extension ViewController : TagViewDelegate {

@@ -16,19 +16,22 @@ class Theme {
     var tagTextColor : UIColor!
     var tagBackgroundColor : UIColor!
     var tagBorderColor : UIColor!
-    
     var tagBorderWidht : CGFloat!
-    var allowSingleSelection : Bool!
-    var allowMultipleSelection : Bool!
-    var selectionColor : UIColor!
-    var selectionTagTextColor : UIColor!
-    var isDeleteEnabled : Bool!
-    var isShadowEnabled : Bool!
-    
     var tagShadowColor : UIColor!
     var tagShadowOpacity : Float!
     var tagShadowRadius : CGFloat!
     
+    var allowSingleSelection : Bool!
+    var allowMultipleSelection : Bool!
+    
+    var selectionColor : UIColor!
+    var selectionTagTextColor : UIColor!
+    
+    
+    var isShadowEnabled : Bool!
+    
+    
+    var isDeleteEnabled : Bool!
     var closeIconTint = UIColor.white
     var closeIconWidth : CGFloat = 13.0
     var closeIconHeight : CGFloat = 13.0

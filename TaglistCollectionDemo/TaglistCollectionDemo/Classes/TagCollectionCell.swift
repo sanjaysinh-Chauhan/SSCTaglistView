@@ -14,7 +14,7 @@ class TagCollectionCell: UICollectionViewCell {
     @IBOutlet var lblTag: UILabel!
     @IBOutlet var viewTag: UIView!
     var objTagName : String!
-    
+    var isCellSelected : Bool!
     var indexPath : IndexPath!
     
     @IBOutlet var btnRemoveTag: UIButton!
@@ -29,8 +29,7 @@ class TagCollectionCell: UICollectionViewCell {
         self.lblTag.font = Theme.shared.textFont
         self.viewTag.backgroundColor = Theme.shared.tagBackgroundColor
         self.viewTag.layer.cornerRadius = 15.0
-        
-        
+
         
         if (Theme.shared.isShadowEnabled == true) {
             
@@ -49,12 +48,24 @@ class TagCollectionCell: UICollectionViewCell {
     
     func configureCell() {
         
+        
         self.lblTag.text = objTagName
 
         if(Theme.shared.isDeleteEnabled == false) {
             self.btnRemoveTag.removeFromSuperview()
         }
 
+        
+        if(self.isCellSelected == true && Theme.shared.isDeleteEnabled == true) {
+            self.viewTag.backgroundColor = Theme.shared.selectionColor
+            self.lblTag.textColor = Theme.shared.selectionTagTextColor
+            self.btnRemoveTag.layoutIfNeeded()
+        }
+        else {
+            self.lblTag.textColor = Theme.shared.tagTextColor
+            self.viewTag.backgroundColor = Theme.shared.tagBackgroundColor
+            self.btnRemoveTag.layoutIfNeeded()
+        }
         
     }
 
