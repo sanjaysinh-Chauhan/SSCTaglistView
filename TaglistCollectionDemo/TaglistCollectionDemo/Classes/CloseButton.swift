@@ -26,7 +26,7 @@ class CloseButton: UIButton {
     
     func drawCloseIcon() {
         
-        let view = CloseView(frame: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0))
+        let view = CloseView(frame: CGRect(x: 0.0, y: 0.0, width: Theme.shared.closeIconWidth, height: Theme.shared.closeIconHeight))
         
         view.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         self.addSubview(view)
@@ -72,8 +72,7 @@ class CloseView : UIView {
         
         let lineShape = CAShapeLayer()
         lineShape.path = beziarPath.cgPath
-        lineShape.fillColor = UIColor.clear.cgColor
-        lineShape.strokeColor = UIColor.brown.cgColor
+        lineShape.strokeColor = Theme.shared.closeIconTint.cgColor
         
         self.layer.addSublayer(lineShape)
 

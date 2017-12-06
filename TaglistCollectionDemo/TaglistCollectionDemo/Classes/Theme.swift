@@ -29,5 +29,8 @@ class Theme {
     var tagShadowOpacity : Float!
     var tagShadowRadius : CGFloat!
     
+    var closeIconTint = UIColor.white
+    var closeIconWidth : CGFloat = 13.0
+    var closeIconHeight : CGFloat = 13.0
     static let shared = Theme()
 }

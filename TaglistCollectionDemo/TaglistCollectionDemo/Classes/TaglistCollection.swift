@@ -133,7 +133,26 @@ protocol TagViewDelegate: class {
             self.setNeedsDisplay()
         }
     }
+    
+    @IBInspectable public var closeIconTint : UIColor = UIColor.white {
+        didSet {
+            Theme.shared.closeIconTint = closeIconTint
+            self.setNeedsDisplay()
+        }
+    }
 
+    @IBInspectable public var closeIconWidht : CGFloat = 0.0 {
+        didSet {
+            Theme.shared.closeIconWidth = closeIconWidht
+            self.setNeedsDisplay()
+        }
+    }
+    @IBInspectable public var closeIconHeight : CGFloat = 0.0 {
+        didSet {
+            Theme.shared.closeIconHeight = closeIconHeight
+            self.setNeedsDisplay()
+        }
+    }
     var collectionView : UICollectionView!
     var aryTaglist = [String]()
     var arySelectedTag = [Bool]()
