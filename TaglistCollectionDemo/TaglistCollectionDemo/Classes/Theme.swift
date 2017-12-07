@@ -32,7 +32,8 @@ class Theme {
     
     
     var isDeleteEnabled : Bool!
-    var closeIconTint = UIColor.white
+    var closeIconTint = UIColor.green
+    var selectionCloseIconTint = UIColor.red
     var closeIconWidth : CGFloat = 13.0
     var closeIconHeight : CGFloat = 13.0
     static let shared = Theme()

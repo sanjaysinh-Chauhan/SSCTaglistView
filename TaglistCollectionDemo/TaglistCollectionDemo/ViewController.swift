@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         self.aryTeglist = self.tagListView.copyAllTags()
         
         
-        self.tagListView.textFont = UIFont.systemFont(ofSize: 15.0, weight: .medium)
+        self.tagListView.textFont = UIFont.systemFont(ofSize: 15.0, weight: .heavy)
         
         
     }
@@ -67,6 +67,9 @@ class ViewController: UIViewController {
     }
     @IBAction func copyUnselectedAction(_ sender: UIButton) {
         print(self.tagListView.copyUnselectedTags())
+    }
+    @IBAction func addTagAction(_ sender: UIButton) {
+        self.tagListView.appendTag(tagName: "test")
     }
     
 }

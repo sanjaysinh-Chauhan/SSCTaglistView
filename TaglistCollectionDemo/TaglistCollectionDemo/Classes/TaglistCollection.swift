@@ -159,7 +159,7 @@ protocol TagViewDelegate: class {
     
     @IBInspectable public var selectionCloseIconTint : UIColor = UIColor.white {
         didSet {
-            Theme.shared.closeIconTint = closeIconTint
+            Theme.shared.selectionCloseIconTint = selectionCloseIconTint
             self.setNeedsDisplay()
         }
     }
@@ -227,11 +227,14 @@ protocol TagViewDelegate: class {
             self.arySelectedTag.append(false)
         }
         self.collectionView.reloadData()
+        
     }
     func appendTag (tagName : String) {
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
         collectionView.reloadData()
+        
+        
     }
     
     func appendTag (tagName : String ,atIndex : Int) {

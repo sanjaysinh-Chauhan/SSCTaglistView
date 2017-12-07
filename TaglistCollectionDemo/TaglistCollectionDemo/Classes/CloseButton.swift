@@ -10,6 +10,12 @@ import UIKit
 import Foundation
 class CloseButton: UIButton {
 
+    var closeView : CloseView?
+    public var tintcolor : UIColor = UIColor.clear {
+        didSet {
+            closeView?.strokColor = self.tintcolor
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         self.drawCloseIcon()
@@ -26,16 +32,17 @@ class CloseButton: UIButton {
     
     func drawCloseIcon() {
         
-        let view = CloseView(frame: CGRect(x: 0.0, y: 0.0, width: Theme.shared.closeIconWidth, height: Theme.shared.closeIconHeight))
         
-        view.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        
-        self.addSubview(view)
-        
+        if self.subviews.count == 0
+        {
+            closeView = CloseView(frame: CGRect(x: 0.0, y: 0.0, width: Theme.shared.closeIconWidth, height: Theme.shared.closeIconHeight))
+            
+            closeView?.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+            
+            self.addSubview(closeView!)
+            
+        }
     }
-
-
-
 }
 
 class CloseView : UIView {
@@ -48,12 +55,20 @@ class CloseView : UIView {
         super.init(frame: frame)
         self.isOpaque = false
     }
-    
+    convenience init(frame: CGRect, strokColor : UIColor) {
+        self.init(frame: frame)
+        self.strokColor = strokColor
+    }
+    var strokColor = Theme.shared.closeIconTint{
+        didSet {
+            self.lineShape.strokeColor = strokColor.cgColor
+        }
+    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    
+    let lineShape = CAShapeLayer()
     func drawCloseView() {
         
         
@@ -71,13 +86,13 @@ class CloseView : UIView {
         
         beziarPath.close()
         
-        let lineShape = CAShapeLayer()
+        
         lineShape.path = beziarPath.cgPath
-        lineShape.strokeColor = Theme.shared.closeIconTint.cgColor
+        
+        
+        lineShape.strokeColor = strokColor.cgColor
         
         self.layer.addSublayer(lineShape)
-
-        
     }
 
 }
