@@ -228,18 +228,19 @@ protocol TagViewDelegate: class {
         }
         self.collectionView.reloadData()
         
+        
     }
     func appendTag (tagName : String) {
+        
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
-        collectionView.reloadData()
-        
-        
+        self.collectionView.reloadData()
+
     }
     
     func appendTag (tagName : String ,atIndex : Int) {
         self.aryTaglist.insert(tagName, at: atIndex)
-        collectionView.reloadData()
+        self.collectionView.reloadData()
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
@@ -249,7 +250,6 @@ protocol TagViewDelegate: class {
         self.aryTaglist.remove(at: index)
         self.collectionView.reloadData()
         
-
     }
     
     
