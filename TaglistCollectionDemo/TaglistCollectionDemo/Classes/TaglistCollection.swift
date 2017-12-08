@@ -87,6 +87,13 @@ protocol TagViewDelegate: class {
         }
     }
     
+    @IBInspectable public var isShadowEnabled : Bool = false {
+        didSet {
+            Theme.shared.isShadowEnabled = isShadowEnabled
+            self.setNeedsDisplay()
+        }
+    }
+    
     @IBInspectable public var scrollIndicator : Bool = true {
         didSet {
             
@@ -107,9 +114,38 @@ protocol TagViewDelegate: class {
         }
     }
     
-    @IBInspectable public var selectionColor : UIColor = UIColor.clear {
+    
+    /// CloseIcon properties
+    @IBInspectable public var isDeleteEnabled : Bool = false {
         didSet {
-            Theme.shared.selectionColor = selectionColor
+            Theme.shared.isDeleteEnabled = isDeleteEnabled
+            self.setNeedsDisplay()
+        }
+    }
+    @IBInspectable public var closeIconTint : UIColor = UIColor.white {
+        didSet {
+            Theme.shared.closeIconTint = closeIconTint
+            self.setNeedsDisplay()
+        }
+    }
+    @IBInspectable public var closeIconWidht : CGFloat = 0.0 {
+        didSet {
+            Theme.shared.closeIconWidth = closeIconWidht
+            self.setNeedsDisplay()
+        }
+    }
+    @IBInspectable public var closeIconHeight : CGFloat = 0.0 {
+        didSet {
+            Theme.shared.closeIconHeight = closeIconHeight
+            self.setNeedsDisplay()
+        }
+    }
+    
+    
+    /// Tag selection properties
+    @IBInspectable public var selectionBackgroundColor : UIColor = UIColor.clear {
+        didSet {
+            Theme.shared.selectionColor = selectionBackgroundColor
             self.setNeedsDisplay()
         }
     }
@@ -120,20 +156,14 @@ protocol TagViewDelegate: class {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable public var isDeleteEnabled : Bool = false {
+    
+    @IBInspectable public var selectionCloseIconTint : UIColor = UIColor.white {
         didSet {
-            Theme.shared.isDeleteEnabled = isDeleteEnabled
+            Theme.shared.selectionCloseIconTint = selectionCloseIconTint
             self.setNeedsDisplay()
         }
     }
-
-    @IBInspectable public var isShadowEnabled : Bool = false {
-        didSet {
-            Theme.shared.isShadowEnabled = isShadowEnabled
-            self.setNeedsDisplay()
-        }
-    }
-
+    
     var collectionView : UICollectionView!
     var aryTaglist = [String]()
     var arySelectedTag = [Bool]()
@@ -152,9 +182,6 @@ protocol TagViewDelegate: class {
     
     override func awakeFromNib() {
     }
-    
-    
-
     
     
     func setupTagCollection() {
@@ -177,7 +204,6 @@ protocol TagViewDelegate: class {
         let tagCollectionNib = UINib(nibName: String(describing: TagCollectionCell.self), bundle: nil)
         collectionView!.register(tagCollectionNib, forCellWithReuseIdentifier: "Cell")
         
-//        collectionView.backgroundColor = UIColor(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1.0)
         collectionView.backgroundColor = UIColor.red
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -201,26 +227,33 @@ protocol TagViewDelegate: class {
             self.arySelectedTag.append(false)
         }
         self.collectionView.reloadData()
+        
+        
     }
     func appendTag (tagName : String) {
+        
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
-        collectionView.reloadData()
+        self.collectionView.reloadData()
+
     }
     
     func appendTag (tagName : String ,atIndex : Int) {
         self.aryTaglist.insert(tagName, at: atIndex)
-        collectionView.reloadData()
+        self.arySelectedTag.insert(false, at: atIndex)
+        self.collectionView.reloadData()
+        
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
+        self.arySelectedTag.removeAll()
         self.collectionView.reloadData()
     }
     func removeTagsAtIndex (index : Int) {
         self.aryTaglist.remove(at: index)
+        self.arySelectedTag.remove(at: index)
         self.collectionView.reloadData()
         
-
     }
     
     
@@ -232,6 +265,26 @@ protocol TagViewDelegate: class {
         return aryTags
     }
     
+    func copySelectedTags () -> [String] {
+        var aryTags = [String]()
+        for (index , _) in self.aryTaglist.enumerated() {
+            if(self.arySelectedTag[index] == true) {
+                aryTags.append(self.aryTaglist[index])
+            }
+        }
+        return aryTags
+    }
+    
+    func copyUnselectedTags () -> [String] {
+        var aryTags = [String]()
+        for (index , _) in self.aryTaglist.enumerated() {
+            if(self.arySelectedTag[index] == false) {
+                aryTags.append(self.aryTaglist[index])
+            }
+        }
+        return aryTags
+    }
+    
 }
 
 extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout{
@@ -239,18 +292,20 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         return self.aryTaglist.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         let cellReuserIdentifier = "Cell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuserIdentifier, for: indexPath) as! TagCollectionCell
-        
-        
-        
         cell.indexPath = indexPath
         cell.objTagName = self.aryTaglist[indexPath.item]
         
+        cell.isCellSelected = self.arySelectedTag[indexPath.item]
         cell.delegate = self as TagColllectionCellDelegate
+        
         cell.configureCell()
         
         return cell
+
     }
     
     
@@ -266,36 +321,22 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTaponTag(indexPath)
         
-        
-        if(self.allowMultipleSelection == true || self.allowMultipleSelection) {
+        if(self.allowMultipleSelection == true) {
+            
+            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
+        }
+        else if(self.allowSingleSelection == true) {
             
             self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
             
-            collectionView.reloadData()
-//            if(self.arySelectedTag[indexPath.item] == true) {
-//                cell.viewTag.backgroundColor = self.selectionColor
-//                cell.lblTag.textColor = self.selectionTagTextColor
-//            }
-//            else {
-//                cell.viewTag.backgroundColor = self.tagBackgroundColor
-//                cell.lblTag.textColor = self.tagTextColor
-//            }
+            for (index , _) in self.arySelectedTag.enumerated() {
+                if (indexPath.item != index) {
+                    self.arySelectedTag[index] = false
+                }
+            }
             
         }
-//        else if(self.allowSingleSelection == true) {
-//
-//            if(self.arySelectedTag[indexPath.item] == true) {
-//                cell.viewTag.backgroundColor = self.selectionColor
-//                cell.lblTag.textColor = self.selectionTagTextColor
-//            }
-//            else {
-//                cell.viewTag.backgroundColor = self.tagBackgroundColor
-//                cell.lblTag.textColor = self.tagTextColor
-//            }
-//            self.arySelectedTag[indexPath.item] = !self.arySelectedTag[indexPath.item]
-//            self.collectionView.reloadData()
-//        }
-        
+        self.collectionView.reloadData()
         
     }
     
@@ -329,4 +370,5 @@ extension String {
         return ceil(boundingBox.width)
     }
 }
+
 

@@ -14,10 +14,10 @@ class TagCollectionCell: UICollectionViewCell {
     @IBOutlet var lblTag: UILabel!
     @IBOutlet var viewTag: UIView!
     var objTagName : String!
-    
+    var isCellSelected : Bool!
     var indexPath : IndexPath!
     
-    @IBOutlet var btnRemoveTag: UIButton!
+    @IBOutlet var btnRemoveTag: CloseButton!
     
     var delegate : TagColllectionCellDelegate!
     override func awakeFromNib() {
@@ -29,8 +29,7 @@ class TagCollectionCell: UICollectionViewCell {
         self.lblTag.font = Theme.shared.textFont
         self.viewTag.backgroundColor = Theme.shared.tagBackgroundColor
         self.viewTag.layer.cornerRadius = 15.0
-        
-        
+        self.viewTag.clipsToBounds = true
         
         if (Theme.shared.isShadowEnabled == true) {
             
@@ -49,16 +48,30 @@ class TagCollectionCell: UICollectionViewCell {
     
     func configureCell() {
         
+        
         self.lblTag.text = objTagName
 
         if(Theme.shared.isDeleteEnabled == false) {
             self.btnRemoveTag.removeFromSuperview()
         }
 
+        if(Theme.shared.isDeleteEnabled == true) {
+            if(self.isCellSelected == true) {
+                self.viewTag.backgroundColor = Theme.shared.selectionColor
+                self.lblTag.textColor = Theme.shared.selectionTagTextColor
+                self.btnRemoveTag.tintcolor = Theme.shared.selectionCloseIconTint
+            }
+            else {
+                self.lblTag.textColor = Theme.shared.tagTextColor
+                self.viewTag.backgroundColor = Theme.shared.tagBackgroundColor
+                self.btnRemoveTag.tintcolor = Theme.shared.closeIconTint
+            }
+        }
+        
         
     }
 
-    @IBAction func removeAction(_ sender: UIButton) {
+    @IBAction func removeAction(_ sender: CloseButton) {
         self.delegate.removeTagAt(indexPath: self.indexPath)
     }
 }
