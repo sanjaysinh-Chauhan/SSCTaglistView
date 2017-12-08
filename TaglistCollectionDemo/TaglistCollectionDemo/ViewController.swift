@@ -10,7 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var txtTag: UITextField!
+    @IBOutlet var tbllist: UITableView!
     var aryTeglist = [String]()
+    var aryCopyTags = [String]()
+    
     @IBOutlet var tagListView: TaglistCollection!
     
     @IBOutlet var btnClose: CloseButton!
@@ -18,7 +22,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-
+        self.title = "Features"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -42,6 +46,7 @@ class ViewController: UIViewController {
         self.tagListView.setupTagCollection()
         self.tagListView.delegate = self
         
+        self.tagListView.appendTag(tagNamelist: self.aryTeglist)
         self.tagListView.appendTag(tagName: "Men's Fashion")
         self.tagListView.appendTag(tagName: "Women's Fashion")
         self.tagListView.appendTag(tagName: "Home & Kitched")
@@ -58,36 +63,58 @@ class ViewController: UIViewController {
         
         
         self.tagListView.textFont = UIFont.systemFont(ofSize: 15.0, weight: .heavy)
-        
+        self.tagListView.removeAllTags()
         
     }
 
     @IBAction func copySelectedAction(_ sender: UIButton) {
-        print(self.tagListView.copySelectedTags())
+        self.aryCopyTags.removeAll()
+        self.aryCopyTags = self.tagListView.copySelectedTags()
+        self.tbllist.reloadData()
+        
     }
     @IBAction func copyUnselectedAction(_ sender: UIButton) {
-        print(self.tagListView.copyUnselectedTags())
+        self.aryCopyTags.removeAll()
+        self.aryCopyTags = self.tagListView.copyUnselectedTags()
+        self.tbllist.reloadData()
     }
     @IBAction func addTagAction(_ sender: UIButton) {
-        self.tagListView.appendTag(tagName: "test")
+        let strText = self.txtTag.text?.trimmingCharacters(in: .whitespaces)
+        if(strText?.characters.count != 0){
+            self.tagListView.appendTag(tagName: strText!)
+            self.txtTag.text = ""
+        }
     }
     
 }
 
 extension ViewController : TagViewDelegate {
     func didRemoveTag(_ indexPath: IndexPath) {
+        print("Removed Tag: \(self.aryTeglist[indexPath.item])")
         self.aryTeglist.remove(at: indexPath.item)
     }
     
     func didTaponTag(_ indexPath: IndexPath) {
-        print(self.aryTeglist[indexPath.item])
+        print("Tag tapped: \(self.aryTeglist[indexPath.item])")
     }
-    
-    func removeTag(_ indexPath: IndexPath) {
-        print(indexPath.item)
-    }
-    
-    
+
 }
 
+extension ViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        return textField.resignFirstResponder()
+    }
+}
 
+extension ViewController : UITableViewDataSource , UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.aryCopyTags.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! demoCell
+        cell.lblType.text = self.aryCopyTags[indexPath.row]
+        return cell
+    }
+}

@@ -240,14 +240,18 @@ protocol TagViewDelegate: class {
     
     func appendTag (tagName : String ,atIndex : Int) {
         self.aryTaglist.insert(tagName, at: atIndex)
+        self.arySelectedTag.insert(false, at: atIndex)
         self.collectionView.reloadData()
+        
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
+        self.arySelectedTag.removeAll()
         self.collectionView.reloadData()
     }
     func removeTagsAtIndex (index : Int) {
         self.aryTaglist.remove(at: index)
+        self.arySelectedTag.remove(at: index)
         self.collectionView.reloadData()
         
     }
@@ -263,7 +267,7 @@ protocol TagViewDelegate: class {
     
     func copySelectedTags () -> [String] {
         var aryTags = [String]()
-        for (index , _) in self.arySelectedTag.enumerated() {
+        for (index , _) in self.aryTaglist.enumerated() {
             if(self.arySelectedTag[index] == true) {
                 aryTags.append(self.aryTaglist[index])
             }
@@ -273,7 +277,7 @@ protocol TagViewDelegate: class {
     
     func copyUnselectedTags () -> [String] {
         var aryTags = [String]()
-        for (index , _) in self.arySelectedTag.enumerated() {
+        for (index , _) in self.aryTaglist.enumerated() {
             if(self.arySelectedTag[index] == false) {
                 aryTags.append(self.aryTaglist[index])
             }
