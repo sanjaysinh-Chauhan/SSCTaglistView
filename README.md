@@ -61,28 +61,45 @@ import SSCTaglistView
 
 ## Usage example
 
+Add view in storyboard and apply class TaglistCollection. Here tagListView is outlet from storyboard
+
 ```swift
 import SSCTaglistView
--Add view in storyboard and apply class TaglistCollection. Here tagListView is outlet from storyboard
--Create outlet of that view. 
--Add single tags to view using 
-    tagListView.appendTag(tagName: #Stringtagname)
--Add single tags to specific index 
-    self.appendTag(tagName: #stringTagName, atIndex: #Index)
--Add array of tags to view using 
-    tagListView.appendTag(tagNamelist: #arrayOfString)
--Remove all tags from view
-    tagListView.removeAllTags()
--Remove all tag from specific index
-    tagListView.removeTagAt(indexPath: #IndexOfTag)
--Copy all tags from taglistView
-    tagListView.copyAllTags() will return array of tags.
--Copy selected tags from taglistView.
-    tagListView.copySelectedTags() will return array of tags.
--Copy unselected tags from taglistView.
-    tagListView.copyUnselectedTags() will return array of tags.
-    
 ```
+### Create outlet of that view. 
+### Add single tags to view using 
+```swift
+    tagListView.appendTag(tagName: #Stringtagname)
+```
+### Add single tags to specific index 
+```swift
+    self.appendTag(tagName: #stringTagName, atIndex: #Index)
+```    
+### Add array of tags to view using 
+```swift
+    tagListView.appendTag(tagNamelist: #arrayOfString)
+```    
+### Remove all tags from view
+```swift
+    tagListView.removeAllTags()
+```    
+### Remove all tag from specific index
+```swift
+    tagListView.removeTagAt(indexPath: #IndexOfTag)
+```    
+### Copy all tags from taglistView
+```swift
+    tagListView.copyAllTags() will return array of tags.
+```    
+### Copy selected tags from taglistView.
+```swift
+    tagListView.copySelectedTags() will return array of tags.
+```    
+### Copy unselected tags from taglistView.
+```swift
+    tagListView.copyUnselectedTags() will return array of tags.
+```
+
 
 ## Contribute
 
