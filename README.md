@@ -10,6 +10,8 @@
 One to two paragraph statement about your product and what it does.
 
 ![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/ScreenShot.png?raw=true)
+![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/Features.gif?raw=true)
+
 ## Features
 
 - [x] Feature 1
