@@ -312,9 +312,10 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let w = self.aryTaglist[indexPath.item].width(withConstraintedHeight: 70.0, font: textFont)
-
-        return CGSize(width: w, height: 50.0)
+//        let w = self.aryTaglist[indexPath.item].width(withConstraintedHeight: 70.0, font: textFont)
+//
+//        return CGSize(width: w, height: 50.0)
+        return CGSize(width: 100.0, height: 50.0)
 
     }
     
@@ -356,19 +357,19 @@ extension TaglistCollection : TagColllectionCellDelegate {
 }
 
 extension String {
-    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        
-        return ceil(boundingBox.height)
-    }
-    
-    func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        
-        return ceil(boundingBox.width)
-    }
+//    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+//        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+//        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+//
+//        return ceil(boundingBox.height)
+//    }
+//
+//    func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
+//        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+//        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+//
+//        return ceil(boundingBox.width)
+//    }
 }
 
 
