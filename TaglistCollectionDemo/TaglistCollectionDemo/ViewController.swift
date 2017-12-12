@@ -47,17 +47,9 @@ class ViewController: UIViewController {
         self.tagListView.delegate = self
         
         self.tagListView.appendTag(tagNamelist: self.aryTeglist)
-        self.tagListView.appendTag(tagName: "Men's Fashion")
-        self.tagListView.appendTag(tagName: "Women's Fashion")
-        self.tagListView.appendTag(tagName: "Home & Kitched")
-        self.tagListView.appendTag(tagName: "Mobile & Accessories")
-        self.tagListView.appendTag(tagName: "Electronics")
-        self.tagListView.appendTag(tagName: "Mobile & Accessories Mobile & Accessories Mobile & Accessories Mobile & Accessories")
-        self.tagListView.appendTag(tagName: "Baby, Kids & Toys")
-        self.tagListView.appendTag(tagName: "Stationary")
-        self.tagListView.appendTag(tagName: "Sports & Health")
-        self.tagListView.appendTag(tagName: "Automotive")
-        self.tagListView.appendTag(tagName: "Supermarket")
+        
+        self.tagListView.appendTag(tagName: "Auto")
+        self.tagListView.appendTag(tagName: "Super")
         
         self.aryTeglist = self.tagListView.copyAllTags()
         
