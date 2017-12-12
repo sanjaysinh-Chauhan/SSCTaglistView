@@ -63,7 +63,6 @@ class ViewController: UIViewController {
         
         
         self.tagListView.textFont = UIFont.systemFont(ofSize: 15.0, weight: .heavy)
-        self.tagListView.removeAllTags()
         
     }
 
