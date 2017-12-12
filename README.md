@@ -1,5 +1,5 @@
 # SSCTaglistView
-> Short blurb about what your product does.
+> Simple and highly customizable iOS tag list view, in Swift.
 
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
