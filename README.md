@@ -9,7 +9,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 One to two paragraph statement about your product and what it does.
 
-![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/Development/Features.gif?raw=true)
+![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/Features.gif?raw=true)
 
 ## Features
 
