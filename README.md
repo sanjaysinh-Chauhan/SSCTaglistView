@@ -61,6 +61,7 @@ import SSCTaglistView
 
 ## Usage example
 
+
 Add view in storyboard and apply class TaglistCollection. Here tagListView is outlet from storyboard
 
 ```swift
