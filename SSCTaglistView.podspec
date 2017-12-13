@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'SSCTaglistView'
-  s.version          = '0.1.7'
-  s.summary          = 'Simple but highly customizable iOS tag list view, in Swift.'
+  s.version          = '0.1.8'
+  s.summary          = 'Simple and highly customizable iOS tag list view, in Swift.'
  
-  s.description      = 'Simple but highly customizable iOS tag list view, in Swift. User can delete the tag.'
+  s.description      = 'Simple and highly customizable iOS tag list view, in Swift. User can delete the tag.'
  
   s.homepage         = 'https://github.com/sanjaysinh-Chauhan/SSCTaglistView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
