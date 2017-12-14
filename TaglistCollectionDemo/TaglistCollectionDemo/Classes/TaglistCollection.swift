@@ -348,10 +348,10 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
 extension TaglistCollection : TagColllectionCellDelegate {
     func removeTagAt(indexPath: IndexPath) {
         
-        self.delegate?.didRemoveTag(indexPath)
+        
         self.removeTagsAtIndex(index: indexPath.item)
         
-        
+        self.delegate?.didRemoveTag(indexPath)
     }
 }
 
