@@ -275,6 +275,7 @@ protocol TagViewDelegate: class {
             self.selectedTagAck.append(false)
         }
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
         
     }
@@ -286,6 +287,7 @@ protocol TagViewDelegate: class {
         self.tagNames.append(tagName)
         self.selectedTagAck.append(false)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Append tag at specific index
@@ -297,6 +299,7 @@ protocol TagViewDelegate: class {
         self.tagNames.insert(tagName, at: atIndex)
         self.selectedTagAck.insert(false, at: atIndex)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Remove all tags
@@ -304,6 +307,7 @@ protocol TagViewDelegate: class {
         self.tagNames.removeAll()
         self.selectedTagAck.removeAll()
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Remove tag at specific index
@@ -313,6 +317,7 @@ protocol TagViewDelegate: class {
         self.tagNames.remove(at: index)
         self.selectedTagAck.remove(at: index)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
     }
     

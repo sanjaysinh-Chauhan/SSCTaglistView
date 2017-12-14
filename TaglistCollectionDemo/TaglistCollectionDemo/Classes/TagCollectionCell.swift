@@ -58,6 +58,7 @@ class TagCollectionCell: UICollectionViewCell {
     
     /// Cell configuration
     func configureCell() {
+
         self.lblTag.text = objTagName
         if(Theme.shared.isDeleteEnabled == false) {
             self.btnRemoveTag.removeFromSuperview()
