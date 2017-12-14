@@ -18,6 +18,7 @@
 		2AFF234B1FB301DB00C32E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF234A1FB301DB00C32E8A /* Assets.xcassets */; };
 		2AFF234E1FB301DB00C32E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF234C1FB301DB00C32E8A /* LaunchScreen.storyboard */; };
 		2AFF23561FB3025200C32E8A /* TaglistCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF23551FB3025200C32E8A /* TaglistCollection.swift */; };
+		B85EE6801FE23840007AF5E8 /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85EE67F1FE23840007AF5E8 /* StringExtentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2AFF234D1FB301DB00C32E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AFF234F1FB301DB00C32E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AFF23551FB3025200C32E8A /* TaglistCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaglistCollection.swift; sourceTree = "<group>"; };
+		B85EE67F1FE23840007AF5E8 /* StringExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtentions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 		2A5C9F8D1FCC201700AD95FC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B85EE67F1FE23840007AF5E8 /* StringExtentions.swift */,
 				2AFF23551FB3025200C32E8A /* TaglistCollection.swift */,
 				2A4D23091FBEF27800030481 /* TagCollectionCell.swift */,
 				2A5EEB031FD04A2C007D80FD /* Theme.swift */,
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A6F2EC51FD16C3200E0AEDC /* CloseButton.swift in Sources */,
+				B85EE6801FE23840007AF5E8 /* StringExtentions.swift in Sources */,
 				2AFF23461FB301DB00C32E8A /* ViewController.swift in Sources */,
 				2A4D230A1FBEF27800030481 /* TagCollectionCell.swift in Sources */,
 				2A5EEB041FD04A2C007D80FD /* Theme.swift in Sources */,

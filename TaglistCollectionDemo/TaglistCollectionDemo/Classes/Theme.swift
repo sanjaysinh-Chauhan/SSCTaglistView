@@ -11,30 +11,30 @@ import UIKit
 
 class Theme {
  
-    var cellBackGroundColor : UIColor!
-    var textFont :  UIFont!
-    var tagTextColor : UIColor!
-    var tagBackgroundColor : UIColor!
-    var tagBorderColor : UIColor!
-    var tagBorderWidht : CGFloat!
-    var tagShadowColor : UIColor!
-    var tagShadowOpacity : Float!
-    var tagShadowRadius : CGFloat!
+    var cellBackGroundColor     : UIColor!   // Background color of cell
+    var textFont                : UIFont!    // Tag font
+    var tagTextColor            : UIColor!   // Tag text color
+    var tagBackgroundColor      : UIColor!   // Tag background color
+    var tagBorderColor          : UIColor!   // Tag border color
+    var tagBorderWidth          : CGFloat!   // Tag border width
+    var tagShadowColor          : UIColor!   // Tag shadow color
+    var tagShadowOpacity        : Float!     // Tag shadow opacity
+    var tagShadowRadius         : CGFloat!   // Tag shadow radius
     
-    var allowSingleSelection : Bool!
-    var allowMultipleSelection : Bool!
+    var allowSingleSelection    : Bool!      // Allow single selection
+    var allowMultipleSelection  : Bool!      // Allow multiple selection
     
-    var selectionColor : UIColor!
-    var selectionTagTextColor : UIColor!
-    
-    
-    var isShadowEnabled : Bool!
+    var selectionColor          : UIColor!   // Tag selection color
+    var selectionTagTextColor   : UIColor!   // Tag selection text color
     
     
-    var isDeleteEnabled : Bool!
-    var closeIconTint = UIColor.green
-    var selectionCloseIconTint = UIColor.red
-    var closeIconWidth : CGFloat = 13.0
-    var closeIconHeight : CGFloat = 13.0
-    static let shared = Theme()
+    var isShadowEnabled         : Bool!      // Tag shadow enable
+    
+    
+    var isDeleteEnabled         : Bool!      // Tag able to delete
+    var closeIconTint           = UIColor.green // Tag close icon tint color
+    var selectionCloseIconTint  = UIColor.red   // Tag selection icon tint color
+    var closeIconWidth: CGFloat = 13.0       // Close icon width
+    var closeIconHeight:CGFloat = 13.0       // Close icon height
+    static let shared           = Theme()    // shared instance 
 }
