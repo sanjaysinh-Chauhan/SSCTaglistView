@@ -1,5 +1,5 @@
 # SSCTaglistView
-> Short blurb about what your product does.
+> Simple customizable iOS tag list view, in Swift.
 
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
@@ -9,7 +9,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 One to two paragraph statement about your product and what it does.
 
-![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/ScreenShot.png?raw=true)
+![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/Features.gif?raw=true)
 ## Features
 
 - [x] Feature 1
@@ -60,6 +60,7 @@ import SSCTaglistView
 2. Congratulations!  
 
 ## Usage example
+
 
 Add view in storyboard and apply class TaglistCollection. Here tagListView is outlet from storyboard
 
