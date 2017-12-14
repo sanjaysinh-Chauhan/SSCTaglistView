@@ -8,8 +8,7 @@
 
 import UIKit
 protocol TagViewDelegate: class {
-
-   
+  
     /// this method will fire automatically when tapped on tag
     ///
     /// - Parameter indexPath: return indexpath of tapped tag
@@ -22,7 +21,6 @@ protocol TagViewDelegate: class {
     
 }
 @IBDesignable class TaglistCollection: UIView {
-    
   
     /// Spacing between tags
     @IBInspectable public var tagSpacing: CGFloat = 0.0 {
