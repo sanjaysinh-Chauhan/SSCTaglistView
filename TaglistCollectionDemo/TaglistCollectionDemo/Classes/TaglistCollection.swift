@@ -8,15 +8,11 @@
 
 import UIKit
 protocol TagViewDelegate: class {
-<<<<<<< HEAD
+
   
     /// this method will fire automatically when tapped on tag
     ///
     /// - Parameter indexPath: return indexpath of tapped tag
-=======
-
-    
->>>>>>> master
     func didTaponTag ( _ indexPath : IndexPath)
     func didRemoveTag ( _ indexPath : IndexPath)
     
@@ -242,22 +238,18 @@ protocol TagViewDelegate: class {
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
         self.collectionView.reloadData()
-<<<<<<< HEAD
-        self.collectionView.collectionViewLayout.invalidateLayout()
-=======
 
->>>>>>> master
+        self.collectionView.collectionViewLayout.invalidateLayout()
+
     }
     
     func appendTag (tagName : String ,atIndex : Int) {
         self.aryTaglist.insert(tagName, at: atIndex)
         self.arySelectedTag.insert(false, at: atIndex)
         self.collectionView.reloadData()
-<<<<<<< HEAD
+
         self.collectionView.collectionViewLayout.invalidateLayout()
-=======
-        
->>>>>>> master
+
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
