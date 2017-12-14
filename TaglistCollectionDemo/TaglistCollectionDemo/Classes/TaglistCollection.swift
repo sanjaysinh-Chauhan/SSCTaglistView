@@ -227,6 +227,7 @@ protocol TagViewDelegate: class {
             self.arySelectedTag.append(false)
         }
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
         
     }
@@ -235,6 +236,7 @@ protocol TagViewDelegate: class {
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
 
     }
     
@@ -242,17 +244,20 @@ protocol TagViewDelegate: class {
         self.aryTaglist.insert(tagName, at: atIndex)
         self.arySelectedTag.insert(false, at: atIndex)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
         self.arySelectedTag.removeAll()
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     func removeTagsAtIndex (index : Int) {
         self.aryTaglist.remove(at: index)
         self.arySelectedTag.remove(at: index)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
     }
     
