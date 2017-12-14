@@ -47,12 +47,7 @@ class TagCollectionCell: UICollectionViewCell {
     }
     
     func configureCell() {
-<<<<<<< HEAD
 
-=======
-        
-        
->>>>>>> master
         self.lblTag.text = objTagName
 
         if(Theme.shared.isDeleteEnabled == false) {
