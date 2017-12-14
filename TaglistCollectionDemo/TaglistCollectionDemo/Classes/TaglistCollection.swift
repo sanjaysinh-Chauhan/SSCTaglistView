@@ -8,14 +8,20 @@
 
 import UIKit
 protocol TagViewDelegate: class {
+<<<<<<< HEAD
+  
+    /// this method will fire automatically when tapped on tag
+    ///
+    /// - Parameter indexPath: return indexpath of tapped tag
+=======
 
     
+>>>>>>> master
     func didTaponTag ( _ indexPath : IndexPath)
     func didRemoveTag ( _ indexPath : IndexPath)
     
 }
 @IBDesignable class TaglistCollection: UIView {
-    
   
     @IBInspectable public var cellSpacing: CGFloat = 0.0 {
         didSet {
@@ -227,6 +233,7 @@ protocol TagViewDelegate: class {
             self.arySelectedTag.append(false)
         }
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
         
     }
@@ -235,24 +242,34 @@ protocol TagViewDelegate: class {
         self.aryTaglist.append(tagName)
         self.arySelectedTag.append(false)
         self.collectionView.reloadData()
+<<<<<<< HEAD
+        self.collectionView.collectionViewLayout.invalidateLayout()
+=======
 
+>>>>>>> master
     }
     
     func appendTag (tagName : String ,atIndex : Int) {
         self.aryTaglist.insert(tagName, at: atIndex)
         self.arySelectedTag.insert(false, at: atIndex)
         self.collectionView.reloadData()
+<<<<<<< HEAD
+        self.collectionView.collectionViewLayout.invalidateLayout()
+=======
         
+>>>>>>> master
     }
     func removeAllTags () {
         self.aryTaglist.removeAll()
         self.arySelectedTag.removeAll()
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     func removeTagsAtIndex (index : Int) {
         self.aryTaglist.remove(at: index)
         self.arySelectedTag.remove(at: index)
         self.collectionView.reloadData()
+        self.collectionView.collectionViewLayout.invalidateLayout()
         
     }
     
