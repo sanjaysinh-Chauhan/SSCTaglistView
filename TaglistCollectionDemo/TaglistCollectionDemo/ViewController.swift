@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         self.setupTaglistView()
 
     }
@@ -81,8 +80,8 @@ class ViewController: UIViewController {
 
 extension ViewController : TagViewDelegate {
     func didRemoveTag(_ indexPath: IndexPath) {
-        print("Removed Tag: \(self.aryTeglist[indexPath.item])")
-        self.aryTeglist.remove(at: indexPath.item)
+        //print("Removed Tag: \(self.aryTeglist[indexPath.item])")
+        //self.aryTeglist.remove(at: indexPath.item)
     }
     
     func didTaponTag(_ indexPath: IndexPath) {
