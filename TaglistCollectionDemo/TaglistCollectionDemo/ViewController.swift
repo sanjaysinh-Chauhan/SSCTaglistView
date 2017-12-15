@@ -45,8 +45,6 @@ class ViewController: UIViewController {
         self.tagListView.setupTagCollection()
         self.tagListView.delegate = self
         
-        self.tagListView.appendTag(tagNamelist: self.aryTeglist)
-        
         self.tagListView.appendTag(tagName: "Auto")
         self.tagListView.appendTag(tagName: "Super")
         
@@ -72,6 +70,7 @@ class ViewController: UIViewController {
         let strText = self.txtTag.text?.trimmingCharacters(in: .whitespaces)
         if(strText?.characters.count != 0){
             self.tagListView.appendTag(tagName: strText!)
+            self.aryTeglist.append(strText!)
             self.txtTag.text = ""
         }
     }
@@ -80,8 +79,7 @@ class ViewController: UIViewController {
 
 extension ViewController : TagViewDelegate {
     func didRemoveTag(_ indexPath: IndexPath) {
-        //print("Removed Tag: \(self.aryTeglist[indexPath.item])")
-        //self.aryTeglist.remove(at: indexPath.item)
+        print("RemoveIndexPath==\(indexPath)")
     }
     
     func didTaponTag(_ indexPath: IndexPath) {

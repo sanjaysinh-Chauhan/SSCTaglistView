@@ -12,6 +12,7 @@
 		2A58E2D91FD968A600CCF3BD /* demoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58E2D81FD968A600CCF3BD /* demoCell.swift */; };
 		2A5EEB041FD04A2C007D80FD /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5EEB031FD04A2C007D80FD /* Theme.swift */; };
 		2A6F2EC51FD16C3200E0AEDC /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F2EC41FD16C3200E0AEDC /* CloseButton.swift */; };
+		2AEB89AC1FE2A3DE00FBCBE9 /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEB89AB1FE2A3DD00FBCBE9 /* StringExtentions.swift */; };
 		2AFF23441FB301DB00C32E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF23431FB301DB00C32E8A /* AppDelegate.swift */; };
 		2AFF23461FB301DB00C32E8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF23451FB301DB00C32E8A /* ViewController.swift */; };
 		2AFF23491FB301DB00C32E8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF23471FB301DB00C32E8A /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		2A58E2D81FD968A600CCF3BD /* demoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoCell.swift; sourceTree = "<group>"; };
 		2A5EEB031FD04A2C007D80FD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2A6F2EC41FD16C3200E0AEDC /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		2AEB89AB1FE2A3DD00FBCBE9 /* StringExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtentions.swift; sourceTree = "<group>"; };
 		2AFF23401FB301DB00C32E8A /* TaglistCollectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaglistCollectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AFF23431FB301DB00C32E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AFF23451FB301DB00C32E8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 		2A5C9F8D1FCC201700AD95FC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2AEB89AB1FE2A3DD00FBCBE9 /* StringExtentions.swift */,
 				2AFF23551FB3025200C32E8A /* TaglistCollection.swift */,
 				2A4D23091FBEF27800030481 /* TagCollectionCell.swift */,
 				2A5EEB031FD04A2C007D80FD /* Theme.swift */,
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A6F2EC51FD16C3200E0AEDC /* CloseButton.swift in Sources */,
+				2AEB89AC1FE2A3DE00FBCBE9 /* StringExtentions.swift in Sources */,
 				2AFF23461FB301DB00C32E8A /* ViewController.swift in Sources */,
 				2A4D230A1FBEF27800030481 /* TagCollectionCell.swift in Sources */,
 				2A5EEB041FD04A2C007D80FD /* Theme.swift in Sources */,
