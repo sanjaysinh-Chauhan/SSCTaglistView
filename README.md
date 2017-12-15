@@ -4,34 +4,24 @@
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-One to two paragraph statement about your product and what it does.
+
 
 ![Alt text](https://github.com/sanjaysinh-Chauhan/SSCTaglistView/blob/master/Features.gif?raw=true)
 ## Features
 
-- [x] Feature 1
- Simple and highly customizable iOS tag list view, in Swift.
-- [x] Feature 2
- Supports @IBDesignable.
-- [x] Feature 3
- Adds array of tags to view.
-- [x] Feature 4
- Add single tag to list.
-- [x] Feature 5
- Add single tag to specific index.
-- [x] Feature 6
- Remove all tags from taglist view.
-- [x] Feature 7
- Remove tags from specific index.
-- [x] Feature 8
- Directly copy available tags from taglist view
-- [x] Feature 9
- Directly copy selected tags from taglist view.
-- [x] Feature 10
- Directly copy unselected tags from taglist view.
+- [x] Simple and highly customizable iOS tag list view, in Swift.
+- [x] Supports @IBDesignable.
+- [x] Adds array of tags to view.
+- [x] Add single tag to list.
+- [x] Add single tag to specific index.
+- [x] Remove all tags from taglist view.
+- [x] Remove tags from specific index.
+- [x] Directly copy available tags from taglist view
+- [x] Directly copy selected tags from taglist view.
+- [x] Directly copy unselected tags from taglist view.
 ## Requirements
 
 - iOS 10.0+
