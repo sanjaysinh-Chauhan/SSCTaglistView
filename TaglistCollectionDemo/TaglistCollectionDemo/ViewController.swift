@@ -73,6 +73,8 @@ class ViewController: UIViewController {
             self.aryTeglist.append(strText!)
             self.txtTag.text = ""
         }
+        
+        
     }
     
 }

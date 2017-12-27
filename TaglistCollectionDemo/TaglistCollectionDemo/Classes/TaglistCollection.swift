@@ -8,20 +8,21 @@
 
 import UIKit
 protocol TagViewDelegate: class {
-
+    
     /// this method will fire automatically when tapped on tag
     ///
     /// - Parameter indexPath: return indexpath of tapped tag
     func didTaponTag ( _ indexPath : IndexPath)
-   
+    
     /// this method will fire automatically when removed perticular tag
     ///
     /// - Parameter indexPath: return indexpath of removed tag
     func didRemoveTag ( _ indexPath : IndexPath)
     
 }
+
 @IBDesignable class TaglistCollection: UIView {
-  
+    
     /// Spacing between tags
     @IBInspectable public var tagSpacing: CGFloat = 0.0 {
         didSet {
@@ -36,13 +37,13 @@ protocol TagViewDelegate: class {
             self.setNeedsDisplay()
         }
     }
-
+    
     /// Tag font
     @IBInspectable public var textFont: UIFont = UIFont.systemFont(ofSize: 15.0) {
         didSet {
             Theme.shared.textFont = textFont
             self.setNeedsDisplay()
-
+            
         }
     }
     
@@ -243,7 +244,7 @@ protocol TagViewDelegate: class {
         // 4 - register nib
         let tagCollectionNib = UINib(nibName: String(describing: TagCollectionCell.self), bundle: nil)
         collectionView!.register(tagCollectionNib, forCellWithReuseIdentifier: "Cell")
-
+        
         // 5 - set datasource delegate and colors
         collectionView.backgroundColor = UIColor.red
         collectionView.backgroundColor = self.cellBackgroundColor
@@ -260,10 +261,9 @@ protocol TagViewDelegate: class {
         let heightConstraint = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50.0)
         self.addConstraints([topConstrain, heightConstraint, leftConstrain,rightConstrain])
         
-
         
     }
-   
+    
     /// Append multiple tags
     ///
     /// - Parameter tagNamelist: pass array of tags
@@ -273,9 +273,7 @@ protocol TagViewDelegate: class {
             self.selectedTagAck.append(false)
         }
         self.collectionView.reloadData()
-        self.collectionView.collectionViewLayout.invalidateLayout()
-        
-        
+        //self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Append single tag
@@ -285,7 +283,7 @@ protocol TagViewDelegate: class {
         self.tagNames.append(tagName)
         self.selectedTagAck.append(false)
         self.collectionView.reloadData()
-        self.collectionView.collectionViewLayout.invalidateLayout()
+        //self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Append tag at specific index
@@ -297,26 +295,37 @@ protocol TagViewDelegate: class {
         self.tagNames.insert(tagName, at: atIndex)
         self.selectedTagAck.insert(false, at: atIndex)
         self.collectionView.reloadData()
-        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     /// Remove all tags
     func removeAllTags () {
+        
         self.tagNames.removeAll()
         self.selectedTagAck.removeAll()
-        self.collectionView.reloadData()
         self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.layoutIfNeeded()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     /// Remove tag at specific index
     ///
     /// - Parameter index: index of tag
     func removeTagsAtIndex (index : Int) {
-        self.tagNames.remove(at: index)
-        self.selectedTagAck.remove(at: index)
-        self.collectionView.reloadData()
-        self.collectionView.collectionViewLayout.invalidateLayout()
         
+        if index < self.tagNames.count {
+            self.tagNames.remove(at: index)
+        }
+        if self.selectedTagAck.count < index {
+            self.selectedTagAck.remove(at: index)
+        }
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     
@@ -326,7 +335,7 @@ protocol TagViewDelegate: class {
     func copyAllTags () -> [String] {
         var aryTags = [String]()
         for tag in self.tagNames {
-           aryTags.append(tag)
+            aryTags.append(tag)
         }
         return aryTags
     }
@@ -335,6 +344,7 @@ protocol TagViewDelegate: class {
     ///
     /// - Returns: copy of selected tag list
     func copySelectedTags () -> [String] {
+        
         var aryTags = [String]()
         for (index , _) in self.tagNames.enumerated() {
             if(self.selectedTagAck[index] == true) {
@@ -361,7 +371,7 @@ protocol TagViewDelegate: class {
 
 //MARK: - collection view datasource and delegate -
 extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout{
-
+    
     // 1.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.tagNames.count
@@ -372,17 +382,25 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
         let cellReuserIdentifier = "Cell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuserIdentifier, for: indexPath) as! TagCollectionCell
         cell.indexPath = indexPath
-        cell.objTagName = self.tagNames[indexPath.item]
-        cell.isCellSelected = self.selectedTagAck[indexPath.item]
-        cell.delegate = self as TagColllectionCellDelegate
-        cell.configureCell()
+        if indexPath.item < self.tagNames.count {
+            
+            cell.objTagName = self.tagNames[indexPath.item]
+            cell.isCellSelected = self.selectedTagAck[indexPath.item]
+            cell.delegate = self as TagColllectionCellDelegate
+            cell.configureCell()
+        }
         return cell
     }
-
+    
     // 3.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = self.tagNames[indexPath.item].width(withConstraintedHeight: 70.0, font: textFont)
-        return CGSize(width: w, height: 50.0)
+        if indexPath.item < self.tagNames.count {
+            let w = self.tagNames[indexPath.item].width(withConstraintedHeight: 70.0, font: textFont)
+            
+            return CGSize(width: w, height: 50.0)
+        }
+        return CGSize(width: 40, height: 50.0)
+        
     }
     
     // 4.
@@ -406,7 +424,6 @@ extension TaglistCollection : UICollectionViewDataSource ,UICollectionViewDelega
 //MARK: - tag list delegate -
 extension TaglistCollection : TagColllectionCellDelegate {
     func removeTagAt(indexPath: IndexPath) {
-        
         
         self.removeTagsAtIndex(index: indexPath.item)
         self.delegate?.didRemoveTag(indexPath)
