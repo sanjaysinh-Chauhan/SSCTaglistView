@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        self.title = "Features 123"
+        self.title = "Features"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
