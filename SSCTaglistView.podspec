@@ -1,7 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'SSCTaglistView'
-  s.version          = '0.1.10'
-  s.summary          = 'Simple and highly customizable iOS tag list view, in Swift.'
+
+  s.version          = '0.1.11'
+  s.summary          = 'Simple but highly customizable iOS tag list view, in Swift.'
+
  
   s.description      = 'Simple and highly customizable iOS tag list view, in Swift. User can delete the tag.'
  
