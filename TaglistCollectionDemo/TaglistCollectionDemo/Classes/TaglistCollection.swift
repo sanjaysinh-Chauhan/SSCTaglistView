@@ -232,7 +232,7 @@ protocol TagViewDelegate: class {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = self.tagSpacing
         layout.minimumInteritemSpacing = self.tagSpacing
-        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
         
         // 3 - set collectionview layout
@@ -258,7 +258,7 @@ protocol TagViewDelegate: class {
         let topConstrain = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .top, multiplier: 1, constant: 0)
         let leftConstrain = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: collectionView, attribute: .leading, multiplier: 1, constant: 0)
         let rightConstrain = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: collectionView, attribute: .trailing, multiplier: 1, constant: 0)
-        let heightConstraint = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50.0)
+        let heightConstraint = NSLayoutConstraint(item: collectionView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50.0)
         self.addConstraints([topConstrain, heightConstraint, leftConstrain,rightConstrain])
         
         
@@ -283,6 +283,12 @@ protocol TagViewDelegate: class {
         self.tagNames.append(tagName)
         self.selectedTagAck.append(false)
         self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.scrollToItem(at: IndexPath(
+            row: self.collectionView.numberOfItems(inSection:self.collectionView.numberOfSections-1) - 1,
+            section: self.collectionView.numberOfSections - 1), at: .centeredHorizontally, animated: true)
+        }
+        self.collectionView.layoutIfNeeded()
         //self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
